@@ -6,6 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tqwhite/asynchronous-pipe-plus.git"
+  },
   "author": "TQ White II",
-  "license": "ISC"
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/evangelion1204/multi-ini/blob/master/LICENSE"
+    }
+  ]
 }
