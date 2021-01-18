@@ -1,7 +1,52 @@
+asynchronousPipe() takes an array of asynchronous functions and executes
+them in sequence. As each completes, the next is called with the return
+result of the previous function.
+
+The purpose of the package is to create a joint scope for a series of
+asynchronous operations.
+
+The parameters are:
+
+	workList: an array of functions
+	initialValue:	optional initial value passed to the first function
+	callback:		optional function called after all the other functions are finished
+
+The workList functions must have the signature:
+
+	(args, next)={
+		const result= "some functionOf(args), probably the result of an I/O function";
+		next(err, result); //mandatory
+	}
+
+As of 6/7/19, there is a special value of err, skipRestOfPipe, eg:
+
+next('skipRestOfPipe', result);
+
+This will do as the symbol says, skip the rest of the pipe. It serves
+the role of 'continue' in loops. Practically speaking, it calls the
+callback with the current value of result and no error.
+
+It is often good to have special code in the final callback to change a
+skipRestOfPipe error status for the next callback in case it's not an
+asynchronousPipe and  treats it as an error. Eg,
+callback(err=='skipRestOfPipe'?'':err, result)
+
+The optional callback function is called as:
+
+	callback(err, result);
+
+asynchronousPipe() does not return anything.
+
+
+
+=============================================================================
+EG, from test.js 
+
+
 #!/usr/local/bin/node
 'use strict';
 
-const asynchronousPipePlus = new require('asynchronous-pipe-plus')();
+const asynchronousPipePlus = new require('qtools-asynchronous-pipe-plus')();
 const pipeRunner = asynchronousPipePlus.pipeRunner;
 const taskListPlus = asynchronousPipePlus.taskListPlus; 
 
@@ -75,5 +120,5 @@ const taskListPlus = asynchronousPipePlus.taskListPlus;
 };
 
 pipeFunction({ inboundData: 'inboundData_value' }, (err, result) => {
-	console.log('finished');
+	console.log('if you do not see errors, it works');
 });

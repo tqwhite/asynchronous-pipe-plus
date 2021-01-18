@@ -1,14 +1,14 @@
 {
   "name": "asynchronous-pipe-plus",
-  "version": "1.0.0",
-  "description": "Asynchronous-pipe for the future; strictly compatible with previous version except it returns an object instead of a simple function. Includes taskListPlus and utility functions I have learned to like\"",
-  "main": "asynchronous-pipe-plus.js",
+  "version": "1.0.1",
+  "description": "Asynchronous-pipe for the future. Includes taskListPlus and utility functions I have learned to like\"",
+  "main": "qtools-asynchronous-pipe-plus.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tqwhite/asynchronous-pipe-plus.git"
+    "url": "git+https://github.com/tqwhite/qtools-asynchronous-pipe-plus.git"
   },
   "author": "TQ White II",
   "licenses": [
