@@ -40,6 +40,17 @@ asynchronousPipe() does not return anything.
 
  */
  
+
+	// --------------------------------------------------------------------------------
+	// INTERNAL UTILITIES
+
+	const mergeArgs = (args, next, propertyName) => (err, result) =>
+		next(err, {
+			...args,
+			...(propertyName ? { [propertyName]: result } : result)
+		});
+
+	const forwardArgs = ({ next, args }) => err => next(err, args);
  
 	const isArray=item=>(typeof item=='object' && typeof item.length=='number');
 	
@@ -254,7 +265,9 @@ asynchronousPipe() does not return anything.
 	return {
 		pipeRunner:asynchronousPipe,
 		asynchronousPipe,
-		taskListPlus
+		taskListPlus,
+		mergeArgs,
+		forwardArgs
 	};
 };
 
