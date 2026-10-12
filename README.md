@@ -211,3 +211,7 @@ const taskListPlus = asynchronousPipePlus.taskListPlus;
 pipeFunction({ inboundData: 'inboundData_value' }, (err, result) => {
     console.log('if you do not see errors, it works');
 });
+
+### Versions
+
+1.0.6 - License changed to MIT (was ISC). No code changes.
